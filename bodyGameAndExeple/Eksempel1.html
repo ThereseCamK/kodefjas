@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksempel1</title>
+    <style>
+        .card{
+           width: 500px;
+           background-color: lightgrey; 
+           margin:10px;
+           border: 1px solid darkgray;
+        }
+        .header{
+            text-align: center;
+            color:white;
+            margin: 0;
+            border: 1px solid gray;
+            font-size: x-large;
+        }
+        .info{
+            padding: 10px;
+        }
+        .Parts{
+            display: flex;
+            position: relative;
+            align-items: center;
+            
+        }
+        button{
+            height: 30px;
+            
+        }
+        /* #head{
+           float: right;
+           clear: right;
+        }
+        #body{
+            float: right;
+            clear: right;
+        } */
+    </style>
+</head>
+<body>
+    <h1>Eksempel 1</h1>
+    <!-- Verktøy -->
+    <div>
+    <div class="card">
+        <h3 class="header" style="background-color: green;" onclick="showTools()">Verktøy</h3>
+        <div id="tools">
+         
+        </div>
+    </div>
+
+     <!-- HTML -->
+     <div class="card">
+        <h3 class="header" style="background-color: blue;" onclick="showHTML()">HTML</h3>
+        <div id="htmlCard"> </div>
+      
+    </div>
+
+     <!-- CSS -->
+     <div class="card">
+        <h3 class="header" style="background-color: red;" onclick="showCSS()">CSS</h3>
+        <div id="cssCard"></div>
+        
+    </div>
+
+ <!-- Javascript -->
+ <div class="card">
+    <h3 class="header" style="background-color: orange;" onclick="showJS()">Javascript</h3>
+    <div id="javascriptCard"></div>
+  
+</div>
+
+ <!-- Hode, kropp og ben -->
+ <div class="card">
+    <h3 class="header" style="background-color: black;" onclick="showGame()">Hode, kropp og ben</h3>
+    <div id="gameCard"></div>
+  
+</div>
+
+</body>
+<script>
+    let selected = '';
+    
+    function clearAll(){
+        document.getElementById('tools').innerHTML = '';
+        document.getElementById('htmlCard').innerHTML = '';
+        document.getElementById('cssCard').innerHTML = '';
+        document.getElementById('javascriptCard').innerHTML = '';
+        document.getElementById('gameCard').innerHTML = '';
+    }
+    
+    function showTools(){
+       
+     
+        if(selected != 'tools'){
+            clearAll();
+            document.getElementById('tools').innerHTML = ` <div class="info"> De to viktigste verktøyene vi skal bruke er disse: <ul>
+            <li>
+                Koderedigeringsprogrammet <a href="https://code.visualstudio.com/">Visual studio code</a>
+                <br>Vi skal bruke noen <i>extensions:</i></li>
+                <ul>
+                    <li>Javascript-boster</li>
+                    <li>es6-string-html</li>
+                    <li>live-server</li>
+                    <li>live-share</li>
+                </ul>
+            <li>Nettleseren <a href="https://www.google.com/intl/no/chrome/">Google chrome  </a></li>
+            </ul>
+            </div>`
+            selected = 'tools'
+        }
+        else{
+            selected = ''
+            clearAll();
+        }
+      
+         
+    }
+
+    function showHTML(){
+        if(selected != 'html'){
+        clearAll();
+        document.getElementById('htmlCard').innerHTML =
+        `  <p  class="info">Vi bruker HTML til å definere et dokument
+            <ul>
+            <li> Tagger for grunnleggende oppsett av en HTML-fil</li>
+            <li> Tagger for grunnleggende formatering av tekst</li> 
+            <li><tt>&lt;div&gt;</tt></li>
+            <li><tt>&lt;input type="text"&gt;</tt></li>
+            <li><tt>&lt;button&gt;</tt></li>
+            <li> <a href="https://www.w3Scools.com">W3 Schools HTML tutorial  </a></li>
+            </ul>
+            </p>
+        `
+        selected = 'html';
+        }
+        else{
+            selected = '';
+            clearAll();
+        }
+    }
+
+    function showCSS(){
+        if(selected != 'css'){
+            clearAll()
+      document.getElementById('cssCard').innerHTML  =`<p  class="info">Vi bruker CSS til å <i>style</i> et dokument, altså farger, fonter, utseende og lignende
+
+                <ul>
+                <li> <tt>background-color</tt></li>
+                <li> <tt>color</tt></li>
+                <li> <tt>padding</tt></li>
+                <li> <tt>margin</tt></li>
+                <li> <tt>border</tt></li>
+                <li> <tt>text-align</tt></li>
+                <li> <tt>font-size</tt></li>
+                <li> <tt><a href="">Flexbox</a></tt></li>  
+                <li> <tt><a href="">Grid</a></tt></li> 
+                <li> <tt><a href="">tutorial</a></tt></li> 
+                </ul>
+                </p>`
+            selected = 'css';
+            }
+            else{
+                selected = '';
+                clearAll();
+            }
+    }
+    function showJS(){
+        if(selected != 'js'){
+    clearAll()
+    document.getElementById('javascriptCard').innerHTML = `  <p  class="info">Det viktigste vi skal lære er programmeringsspråket JavaScript.
+         Vi skal lære grunnleggende programmering ved å
+          manipulere HTML- og CSS-kode på en nettside ved hjelp av JavaScript.
+
+        <ul>
+        <li> Det finnes en W3Schools JavaScript Tutorial, men her anbefaler vi heller å følge kurset vårt på Moodle.</li>
+      
+        </ul>
+    </p>`
+        selected = 'js'}
+    else {
+        selected = '';
+        clearAll()
+    }
+}
+        
+        let head = 1;
+        let body = 1;
+        let legs = 1;
+    function showGame(){
+        if(selected != 'game'){
+        clearAll();
+       
+        document.getElementById('gameCard').innerHTML = `
+        <div class="info">
+          <div class="Parts"> <button onclick="changeHead(-1)">◀</button> <div id="head"><img src="head${head}.png"></div><button onclick="changeHead(+1)">▶</button></div><br>
+        
+     
+        <div class="Parts"><button onclick="changeBody(-1)">◀</button>   <div id="body"><img src="body${body}.png"></div><button onclick="changeBody(+1)">▶</button></div><br>
+     <div class="Parts">
+        <button onclick="changeLegs(-1)">◀</button>   <div id="legs"><img src="legs1.png"></div>
+        <button onclick="changeLegs(+1)">▶</button></div>
+            </div>
+        `
+        selected = 'game'
+    }
+    else {
+        selected = '';
+        clearAll();
+    }
+    }
+    
+
+function changeHead(val){
+   
+    head += val
+    if(head == 5) head = 1
+    if(head == 0) head = 4 
+    document.getElementById('head').innerHTML = `
+    <img src="head${head}.png">`
+}
+
+function changeBody(val){
+   
+   body += val
+   if(body == 5) body = 1
+   if(body == 0) body = 4 
+   document.getElementById('body').innerHTML = `
+   <img src="body${body}.png">`
+}
+function changeLegs(val){
+   
+   legs += val
+   if(legs == 5) legs = 1
+   if(legs == 0) legs = 4 
+   document.getElementById('legs').innerHTML = `
+   <img src="legs${legs}.png">`
+}
+
+
+</script>
+
+
+</html>

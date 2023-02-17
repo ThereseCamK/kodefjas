@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="starTimer()">START TID</button>
+    <button onclick="stopTimer()">Stopp</button>
+    <button onclick="clearAll()">Clear</button>
+    <button onclick="roundTimer()">Rundetid</button>
+    <p id="showTime">tid:</p>
+    <p id="showPreTime">tidligere tider: </p>
+    <script>
+        let time = 0;
+        let previusTime = 0;
+        let isRunning = false;
+        var id;
+
+        function clearAll(){
+            window.location.reload();
+        }
+        function starTimer(){
+            isRunning = true;
+            id =  setInterval(timeTrack, 1000)
+      
+      
+        }
+
+        function stopTimer(){
+            isRunning = false;
+            timeTrack()
+        }
+
+        function timeTrack(){
+            if (isRunning == true){
+                time ++;
+                document.getElementById('showTime').innerHTML = 'tid: ' +time;
+            }
+            else{
+                clearInterval(id);
+                console.log('funker stopp i if')
+                document.getElementById('showPreTime').innerHTML += time + ', ';
+                time = 0;
+                document.getElementById('showTime').innerHTML = 'tid: ' +time;               
+            }
+        }
+
+
+               
+               
+
+        function roundTimer(){
+            previusTime = time;
+            time = 0;
+            document.getElementById('showPreTime').innerHTML += previusTime + ', ';
+            document.getElementById('showTime').innerHTML = 'tid: ' +time;
+        }
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        let head = 1;
+        let body = 1;
+        let legs = 1;
+        show();
+        function show(){
+            document.getElementById('output').innerHTML =
+            showParts('head', head)
+            +
+            showParts('body', body)
+            + showParts('legs', legs)
+            // `
+            
+            // <div class="Parts"><button onclick="changeHead(-1)">◀</button><div id="head"><img src="head${head}.png"></div><button onclick="changeHead(+1)">▶</button></div><br>
+            // <div class="Parts"><button onclick="changeBody(-1)">◀</button><div id="body"><img src="body${body}.png"></div><button onclick="changeBody(+1)">▶</button></div><br>
+            // <div class="Parts"><button onclick="changeLegs(-1)">◀</button><div id="legs"><img src="legs${legs}.png"></div><button onclick="changeLegs(+1)">▶</button></div>
+            // `
+        }
+
+        function showParts(bodyPart, val){
+         
+            return `<div class="Parts"><button onclick="change('${bodyPart}', -1)">◀</button><img src="${bodyPart}${val}.png"><button onclick="change('${bodyPart}', +1)">▶</button></div><br>`
+        }
+
+        function change(bodyPart, val){
+            console.log(bodyPart)
+            if(bodyPart == 'head'){
+                head += val
+                if(head == 5) head = 1
+                if(head == 0) head = 4
+
+            }
+            if(bodyPart == 'body'){
+                body += val
+                if(body == 5) body = 1
+                if(body== 0) body = 4
+
+            }
+            if(bodyPart == 'legs'){
+                legs += val
+                if(legs == 5) legs = 1
+                if(legs== 0) legs = 4
+
+            }
+            
+            show();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .aggressive{
+            border: 2px solid black;
+            height: 50px;
+            width: 150px;
+            background-color: black;
+        }
+        .eko{
+            border: 2px solid black;
+            height: 50px;
+            width: 150px;
+            background-color: grey; 
+        }
+        .hearbeat{
+            border: 2px solid black;
+            height: 50px;
+            width: 150px;
+            background-color: red; 
+        }
+        .sunrise{
+            border: 2px solid black;
+            height: 50px;
+            width: 150px;
+            background-color: yellow; 
+        }
+    </style>
+</head>
+<body>
+    <div class="aggressive" onclick="play('aggressive')">
+        <audio id="aggressive" class="sound" src="aggressive.mp3"></audio>
+
+    </div>
+    <div class="eko" onclick="play('eko')">
+        <audio id="eko" class="sound" src="eko.mp3"></audio>
+
+    </div>
+    <div class="hearbeat" onclick="play('hearbeat')">
+        <audio id="hearbeat" class="sound" src="hearbeat.mp3"></audio>
+
+    </div>
+    <div class="sunrise" onclick="play('sunrise')">
+        <audio id="sunrise" class="sound" src="sunrise.mp3"></audio>
+
+    </div>
+
+    <button onclick="playAll()">play all</button>
+
+    <script>
+        let soundArray = []
+        let startIndex = 1;
+        let timeStop; 
+        
+        function play(selected){
+            soundArray.push(selected)
+            document.getElementById(selected).play();
+        }
+
+        function playAll(){
+            document.getElementById(soundArray[0]).play(); 
+            timeStop = setInterval(playSound, 3000)  
+        }
+
+        function playSound(){
+      
+            if (startIndex >= soundArray.length-1){
+                clearInterval(timeStop)
+            }
+            document.getElementById(soundArray[startIndex]).play(); 
+             startIndex ++;
+    
+          
+        
+        }
+
+        // addEventListener('ended', function(){ for (i = 1; i < soundArray. length; i++) { 
+        //     audio. src = soundArray[i]; audio.play();}; }, false);
+    </script>
+</body>
+</html>

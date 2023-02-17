@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdjektivHistorie uten Array</title>
+    <style>
+        .wordBox{
+           
+            width: 150px;
+            box-shadow: inset 1px 2px 20px grey;
+            text-align: center;
+            padding: 20px;
+            margin: 5px;
+        }
+        .wordBox:hover{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+    <div id="wordList"></div>
+
+
+    <script>
+
+        let firstWord = '______';
+        
+        let secondWord = '______';
+        
+        let tirdWord = '______';
+        
+        let fourthWord = '______';
+        
+        let fiftWord = '______';
+     
+
+        show();
+        function show(){
+            let html = `Det var en gang en ${firstWord} dame, som skulle til den ${secondWord} mannen, i den ${tirdWord} skogen. 
+            der skulle de lage en ${fourthWord} oppgave, den skulle vises for de ${fiftWord} folka i klassen.`
+            document.getElementById('output').innerHTML = html;
+        }
+
+        showWord()
+        function showWord(){
+            let html = /*HTML*/`
+            <button class="wordBox" onclick="chooseWord(this)">TULLETE</button>
+            <button class="wordBox" onclick="chooseWord(this)">KÅTE</button>
+            <button class="wordBox" onclick="chooseWord(this)">SPESIELLE</button>
+            <button class="wordBox" onclick="chooseWord(this)">FLEKKETE</button>
+            <button class="wordBox" onclick="chooseWord(this)">SURRETE</button>
+
+            `
+            document.getElementById('wordList').innerHTML = html;
+        }
+
+        function chooseWord(word){
+            if(firstWord == '______' ){
+                firstWord = word.innerHTML;
+                word.outerHTML = ''
+            }
+            else if(secondWord == '______'  ){
+                secondWord = word.innerHTML;
+                word.outerHTML = ''
+            }
+            else if(tirdWord == '______'  ){
+                tirdWord = word.innerHTML;
+                word.outerHTML = ''
+            }
+            else if(fourthWord == '______'  ){
+                fourthWord = word.innerHTML;
+                word.outerHTML = ''
+            }
+            else{
+                fiftWord = word.innerHTML;
+                word.outerHTML = ''
+            }
+            show();
+        }
+    </script>
+</body>
+</html>

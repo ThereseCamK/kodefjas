@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdjektivHistorie med Array</title>
+    <style>
+        .wordBox{
+           
+            width: 150px;
+            box-shadow: inset 1px 2px 20px grey;
+            text-align: center;
+            padding: 20px;
+            margin: 5px;
+        }
+        .wordBox:hover{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+
+        let words = ['______', '______', '______', '______', '______', '______'];
+        let funnyWords = ['TULLETE', 'KÅTE', 'SPESIELLE', 'FLEKKETE', 'SURRETE'];
+        let startIndex = 0;
+        show()
+        function show(){
+            let html = `<div>Det var en gang en ${words[0]} dame, som skulle til den ${words[1]} mannen, i den ${words[2]} skogen. 
+            der skulle de lage en ${words[3]} oppgave, den skulle vises for de ${words[4]} folka i klassen. </div><br>
+          `
+          for(let i = 0; i < funnyWords.length; i++){
+            html += ` <button class="wordBox" onclick="chooseWord(${i})">${funnyWords[i]}</button>`
+          }
+            document.getElementById('output').innerHTML = html;
+
+
+        }
+
+        function chooseWord(index){
+            words[startIndex] = funnyWords[index];
+            startIndex++;
+            funnyWords.splice(index, 1);
+            show();
+        }
+   
+
+    </script>
+    
+</body>
+</html>
