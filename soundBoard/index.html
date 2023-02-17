@@ -6,60 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body{
+            background-color: black;
+            color:white;
+            text-align: center;
+        }
         .aggressive{
             border: 2px solid black;
-            height: 50px;
+            background-color: rgb(171, 171, 243);
+            border-radius: 50%;
             width: 150px;
-            background-color: black;
+            text-align: center;
+            padding: 5%;
+            margin-left: 25%;
+            
+            
         }
         .eko{
             border: 2px solid black;
-            height: 50px;
+                border-radius: 50%;
             width: 150px;
-            background-color: grey; 
+            text-align: center;
+            padding: 5%;
+            background-color: rgb(157, 116, 165); 
+            margin-left: 25%;
         }
         .hearbeat{
             border: 2px solid black;
-            height: 50px;
+            border-radius: 50%;
             width: 150px;
-            background-color: red; 
+            text-align: center;
+            padding: 5%;
+            background-color: rgb(230, 123, 123); 
+            margin-left: 25%;
         }
         .sunrise{
             border: 2px solid black;
-            height: 50px;
+            border-radius: 50%;
             width: 150px;
-            background-color: yellow; 
+            text-align: center;
+            padding: 5%;
+            background-color: rgb(171, 171, 117); 
+            margin-left: 25%;
         }
+        button{
+         height: 50px;
+         width: 150px;
+         box-shadow: inset 2px 4px 10px rgb(62, 60, 60);
+         border: 2px solid pink;
+         margin: 2%;
+        }
+        .active{
+            /* transition: transform 2s;
+            transition-timing-function: ease-in-out; */
+            animation-name: example;
+            animation-duration: 6s;
+            animation-iteration-count: 1;
+            
+        }
+        @keyframes example {
+            from {  margin-left: 100%;;
+         
+        }
+        to {    margin-left: 2%;}
+        }
+       
     </style>
 </head>
 <body>
-    <div class="aggressive" onclick="play('aggressive')">
+    <h3>Trykk på lydene for å legge til i en liste, og trykk på spill alle etterpå da kommer de i den rekkefølgen du trykket på. <tt>Med 3 sekunders intervall</tt> </h3>
+    <div class="aggressive" onclick="play('aggressive', this)">
         <audio id="aggressive" class="sound" src="aggressive.mp3"></audio>
+       <div>Aggressiv</div>
 
     </div>
-    <div class="eko" onclick="play('eko')">
+    <div class="eko" onclick="play('eko', this)">
         <audio id="eko" class="sound" src="eko.mp3"></audio>
-
+        <div>Mix</div>
     </div>
-    <div class="hearbeat" onclick="play('hearbeat')">
+    <div class="hearbeat" onclick="play('hearbeat', this)">
         <audio id="hearbeat" class="sound" src="hearbeat.mp3"></audio>
-
+        <div>Hjerte</div>
     </div>
-    <div class="sunrise" onclick="play('sunrise')">
+    <div class="sunrise" onclick="play('sunrise', this)">
         <audio id="sunrise" class="sound" src="sunrise.mp3"></audio>
-
+        <div>Sol</div>
     </div>
 
     <button onclick="playAll()">play all</button>
-
+    <button onclick="clearAll()">Slett</button>
     <script>
         let soundArray = []
         let startIndex = 1;
         let timeStop; 
-        
-        function play(selected){
+
+        function play(selected, element){
             soundArray.push(selected)
+            element.classList.add('active');
             document.getElementById(selected).play();
+            setTimeout(function(){
+                removeClass(element)
+            }, 6000);
+          
+        }
+        function removeClass(element){
+            console.log(element)
+            element.classList.remove('active');
+
         }
 
         function playAll(){
@@ -74,10 +127,15 @@
             }
             document.getElementById(soundArray[startIndex]).play(); 
              startIndex ++;
-    
-          
-        
         }
+
+        function clearAll(){
+            soundArray = []
+            startIndex = 1;
+            timeStop; 
+        }
+
+
 
         // addEventListener('ended', function(){ for (i = 1; i < soundArray. length; i++) { 
         //     audio. src = soundArray[i]; audio.play();}; }, false);
