@@ -116,6 +116,7 @@
         }
 
         function playAll(){
+            if(soundArray.length == 0) alert('Du har ikke valgt lyd')
             document.getElementById(soundArray[0]).play(); 
             timeStop = setInterval(playSound, 3000)  
         }
