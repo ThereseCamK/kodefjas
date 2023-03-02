@@ -66,7 +66,7 @@
 
     <script>
         let randomPokemons = ['bulbasaur', 'charmander', 'mew','pikachu', 'squirtle', 'starmie',]
-        let pokemons = ['bulbasaur'];
+        let pokemons = [];
         let shownPokemon = '';
         let pokemon = '';
         let allVisibility = false;
@@ -82,7 +82,7 @@
            
             html += `<div class="pokemon" >${pok} </div>`;
             html += `<div class="ball" style="opacity: ${opVal};" onclick="catchPokemon()"><img class="ballIMG" src="pokeball.png"></div>`;
-            html += `<div class="bag" onclick="showAll()"><img class="inventory" src="bagg.png"></div> 
+            html += `<div class="bag" onclick="showAll()"><img class="inventory" src="bag2.png"></div> 
                          <div class="pokemonsInBag">${showAll}</div>`;
             document.getElementById('game').innerHTML = html;
         }
@@ -105,7 +105,7 @@
         function generateRandomPokemon(){
                let index = Math.floor(Math.random() * randomPokemons.length);
                pokemon =  randomPokemons[index];
-               let time = 1000 * Math.floor(Math.random()* 10)
+               let time = 1500 * Math.floor(Math.random()* 10)
                console.log(time, ' få')
                setTimeout(removeRandomPokemon, time)
               show()
