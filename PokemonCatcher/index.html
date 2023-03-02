@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+        background-image: url(forest.jpg);
+         background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+  
+        }
+        .ball{
+            position:fixed;
+                width:20%;
+                bottom:0px;
+                left:10%;
+                /* opacity: 0.8; */
+        }
+        .bag{
+            position:fixed;
+                width:20%;
+                height: 10%;
+                top:10px;
+                right: 5%;
+               
+        }
+        .inventory{
+            height: 50px;
+        }
+
+        .pokemonsInBag{
+           position: fixed;
+                width:20%;
+                height: 20%;
+                top:60px;
+                right: 5%;
+                color: red
+        }
+        .pokemon{
+            position:fixed;
+                width:20%;
+                bottom:30%;
+                left:10%;
+                left: 30%;          
+        }
+        
+        .ball:active{
+            opacity: 1.2;
+        }
+        .ballIMG{
+            height: 100px;
+            width: 100px;
+        }
+        .pokeIMG{
+            height: 200px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game"></div>
+
+    <script>
+        let randomPokemons = ['bulbasaur', 'charmander', 'mew','pikachu', 'squirtle', 'starmie',]
+        let pokemons = ['bulbasaur'];
+        let shownPokemon = '';
+        let pokemon = '';
+        let allVisibility = false;
+        let opVal = 0.5;
+
+        generateRandomPokemon();
+        function show(){
+      
+           
+            let html = '';
+            let pok = pokemon == ''? '': `<img class="pokeIMG" id="${pokemon}" src="${pokemon}.png" onclick="selectPokemon(this.id)">`
+            let showAll = allVisibility == true ? `<div> ${pokemons.join('<br>')} </div>` : '';
+           
+            html += `<div class="pokemon" >${pok} </div>`;
+            html += `<div class="ball" style="opacity: ${opVal};" onclick="catchPokemon()"><img class="ballIMG" src="pokeball.png"></div>`;
+            html += `<div class="bag" onclick="showAll()"><img class="inventory" src="bagg.png"></div> 
+                         <div class="pokemonsInBag">${showAll}</div>`;
+            document.getElementById('game').innerHTML = html;
+        }
+
+        function selectPokemon(id){
+            shownPokemon = id;
+            opVal = 1;
+            show();
+        }
+
+        function showAll(){
+            if(allVisibility == true){
+                allVisibility = false
+            }
+            else allVisibility = true;
+            show();
+
+        }
+
+        function generateRandomPokemon(){
+               let index = Math.floor(Math.random() * randomPokemons.length);
+               pokemon =  randomPokemons[index];
+               let time = 1000 * Math.floor(Math.random()* 10)
+               console.log(time, ' få')
+               setTimeout(removeRandomPokemon, time)
+              show()
+        }
+
+        function removeRandomPokemon(){
+                pokemon = '';
+                let timeremove = 100 * Math.floor(Math.random()* 100)
+                console.log(timeremove, 'vekk')
+               setTimeout(generateRandomPokemon, timeremove)
+                show();
+        }
+
+        function catchPokemon(){
+            if(shownPokemon!= ''){
+                pokemons.push(shownPokemon)
+                pokemon = '';
+                shownPokemon = '';
+                opVal = 0.5
+                setTimeout(generateRandomPokemon, 5000)
+             
+            }
+            else alert('Select a Pokemon to catch');
+            show();
+          
+        }
+
+
+    </script>
+    
+</body>
+</html>
