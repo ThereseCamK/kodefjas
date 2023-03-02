@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+       
+        let answer = '';
+        let val = '';
+        let correctAnswers = 0;
+        let ranNumber1 = getRandom();
+        let ranNumber2 = getRandom();
+    
+        show();
+  
+        function show(){
+            let html = `<div> ${ranNumber1} <input type="text" oninput="val = this.value"> ${ranNumber2}  <button onclick="sub()">submit</button> <button onclick="newNr()">Ny</button></div>
+            <p>${answer}</p>
+            <p>Antall riktige: ${correctAnswers}</p>`
+
+            document.getElementById('output').innerHTML = html;
+        }
+
+        // hjelpefunksjon
+
+        function getRandom(){
+            let num = 1+ Math.floor(Math.random()* 10);
+            return num;
+        }
+
+        function sub(){
+            if(ranNumber1 < ranNumber2 && val == '<' 
+            || ranNumber1 > ranNumber2 && val == '>' 
+            || ranNumber1 == ranNumber2 && val == '='){
+              
+                correctAnswers ++;
+                answer = ''
+            }
+            
+       
+          else if( val != '<' || val != '>' || val != '='){
+                answer = '<h3 style="color: red;"> Ugyldig inputt</h3>'
+             }
+             else answer = 'FEIL';
+            newNr()
+          
+        }
+        function newNr(){
+            ranNumber1 = getRandom();
+            ranNumber2 = getRandom();
+          show()
+        }
+
+    </script>
+</body>
+</html>

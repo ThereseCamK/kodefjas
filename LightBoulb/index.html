@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .light{
+            border: 2px solid black;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        let isOn = false;
+        
+
+        show();
+        function show(){
+            let lightColor = isOn == false ? 'grey' : 'yellow';
+            let txt = isOn == false ? 'av' : 'på'
+            let html = `
+                <div class="light" style=" background-color: ${lightColor}" > ${txt}</div>
+                <button onclick="turnOffOrOn()">switch</button>
+            `
+
+            document.getElementById('output').innerHTML = html;
+        }
+
+        function turnOffOrOn(){
+            isOn = isOn == false ? true: false;
+            show()
+        }
+    </script>
+</body>
+</html>

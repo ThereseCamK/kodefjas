@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: black;
+       
+            color: orange;
+        }
+        .s{
+            color: rgb(7, 184, 243);
+            background-color: rgba(4, 104, 143, 0.2);
+            position:relative;
+                width:40%;
+                height: auto;
+                left:10%;
+                right: 50%;
+                margin: 1%;
+                border-radius: 5%;
+                
+        }
+        .a{
+            color: rgb(242, 14, 166);
+            background-color: rgba(251, 8, 194, 0.2);
+            position:relative;
+                width:40%;
+                height: auto;
+                right:10%;
+                left: 50%;
+                margin: 1%;
+                text-align: right;
+        }
+        .in{
+            position:fixed;
+                width:90%;
+                height: 100px;
+                bottom:100px;
+                left:10%;
+                opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div id="output"></div>
+
+    <script>
+        let txtInput = '';
+        let answer = '';
+        let allSendtTxt = [];
+        let allAnswers = [];
+        let randomAnswersAndQuestion = ['Du da?', 'Vil du det?', 'Sikker?', 'okay?', 'Er du "leken?"', 'Liker du det? ', 'Skal vi på date?' ];
+        let randomAnswers = [ 'JA!', 'NEI', 'Nei, ikke nå', 'Nei det gjør ikke det', 'Ja det går bra', 'aldri', 'Går skikkelig dårlig', 'Ja det er jeg'];
+
+
+
+
+            show();
+
+        function show(){
+            let html = '';
+               html += `<div><h4>Send melding til Therese's chatBot her!<br> <tt> still gjerne spørsmål</tt> </h4>`;
+            for(let i = 0; i< allSendtTxt.length; i++){
+                html += `<div class="s">${allSendtTxt[i]}</div><div class="a">${allAnswers[i]}</div>`               
+            
+            }
+            html += `</div>
+            <div class="s">${txtInput}</div>
+           <div class="in"> <input type="txt" oninput="txtInput = this.value"> <button onclick="send()"> ➤ </button></div>`;
+            document.getElementById('output').innerHTML = html;
+        }
+
+        function send(){
+       
+            let txt = '';
+            if(txtInput == ''){
+                alert('venligst fyll inn')
+            }
+            if(txtInput.includes('Hei') || txtInput.includes('HEI')|| txtInput.includes('hei')){
+                console.log('hei funker')
+              txt = 'Hallo, hyggelig å høre fra deg.'
+            }
+           else if(!txtInput.includes('?')){
+            console.log('? funker')
+                txt = randomAnswersAndQuestion[ Math.floor(Math.random()* randomAnswersAndQuestion.length)]
+           }
+           else {
+            txt = randomAnswers[ Math.floor(Math.random()* randomAnswers.length)]
+           }
+            
+            setTimeout(function(){
+                    sendAnswer(txt)
+                }, 3000)
+            
+            show();
+   
+        }
+        
+
+
+        function sendAnswer(txt){
+            answer = txt;
+            pushTxts()
+     
+        }
+
+        function pushTxts(){
+            allSendtTxt.push(txtInput);
+            txtInput = '';
+            allAnswers.push(answer);
+            show();
+        }
+
+    </script>
+</body>
+</html>
