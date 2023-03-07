@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <style>
+    .simon{
+        height: 100px;
+        width: 100px;
+        margin: 5px;
+        float: left;
+
+    }
+    .first{
+        clear: left;
+    }
+ </style>
+</head>
+<body>
+
+    <div id="output"></div>
+    <div id="txtOutput"></div>
+<script>
+
+    let simonBtnColor = ['yellow', 'blue', 'red', 'green'];
+    let simonSays = [];
+    let userSelect = [];
+    let selected;
+    let points = 0;
+    let blinks = 1;
+    let count = 0;
+    let selectedOpacity = 0;
+    let showAll = '';
+    let txt = '';
+    let errorMSG = '';
+    
+    
+
+    showPow();
+    function showPow(){
+        let html = ' ';
+        count++;
+        selected = Math.floor(Math.random() * 4);
+        for(let i = 0; i < 4; i++){
+            let firstInRow = i % 2 == 0 ? 'first': '';
+            if(count > blinks){
+                selectedOpacity = 1;  
+            }
+            else{
+                selectedOpacity = selected == i ? (0.4 + (count / 10)): 0.1
+            }
+            html += `<div class="simon ${firstInRow}" style="background-color: ${simonBtnColor[i]}; opacity: ${selectedOpacity};" onclick="clickSimon(${i})"></div>`
+        }
+        
+       
+        randomBlink();
+
+        document.getElementById('output').innerHTML = html;
+
+    }
+
+    txtShow();
+    function txtShow(){
+        let html = `<p>Poeng: ${points}
+            <br>
+            klikket: ${txt}</p>
+            <h3>${errorMSG}</h3>
+            <button onclick="checkIfCorrect()">sjekk</button> `;
+        document.getElementById('txtOutput').innerHTML = html;
+    }
+
+    function checkIfCorrect(){
+    
+             let tempPoints = 0;
+             
+             for(let i = 0; i < userSelect.length; i++){
+                if(userSelect[i] == simonSays[i] ){
+                 tempPoints++   
+                }
+                console.log(tempPoints, 'temp points')
+                // else alert('feil')
+                }
+                if(tempPoints === userSelect.length && userSelect.length === simonSays.length){
+                    points ++;
+                    blinks ++;
+                    count = 0;      
+                    txt = '';
+                    errorMSG = `RIKTIG`
+                   console.log('riktig');
+                }      
+                else { errorMSG = `FEIL`
+                points --;
+                txt = '';
+                count = 0;        
+            }
+            simonSays = [];
+                    userSelect = [];
+            showPow();
+        txtShow();
+    }
+
+    function clickSimon(index){
+        userSelect.push(simonBtnColor[index]);
+        txt += simonBtnColor[index] + ', '
+        txtShow();
+    }
+
+        function randomBlink(){
+            if(count > blinks){
+                
+            }
+            else{
+                setTimeout(showPow, 5000)
+                simonSays.push(simonBtnColor[selected])
+            }
+           
+        }
+
+    
+
+
+
+
+
+</script>    
+</body>
+</html>
